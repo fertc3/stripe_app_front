@@ -40,16 +40,16 @@ class StripeService {
           paymentMethodId: paymentMethod.id));
       if (response.status == 'succeeded') {
         return new StripeTransactionResponse(
-            message: 'Transaction successful', success: true);
+            message: 'Transacción exitosa', success: true);
       } else {
         return new StripeTransactionResponse(
-            message: 'Transaction failed', success: false);
+            message: 'Transacción fallida', success: false);
       }
     } on PlatformException catch (err) {
       return StripeService.getPlatformExceptionErrorResult(err);
     } catch (err) {
       return new StripeTransactionResponse(
-          message: 'Transaction failed: ${err.toString()}', success: false);
+          message: 'Transacción fallida: ${err.toString()}', success: false);
     }
   }
 
@@ -79,7 +79,7 @@ class StripeService {
   }
 
   static getPlatformExceptionErrorResult(err) {
-    String message = 'Something went wrong';
+    String message = 'Hubo un problema';
     if (err.code == 'cancelled') {
       message = 'Transacción cancelada';
     }
